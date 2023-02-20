@@ -9,13 +9,15 @@ plugins {
     // Kotlin support
     id("org.jetbrains.kotlin.jvm") version "1.8.0"
     // Gradle IntelliJ Plugin
-    id("org.jetbrains.intellij") version "1.12.0"
+    id("org.jetbrains.intellij") version "1.13.0"
     // Gradle Changelog Plugin
     id("org.jetbrains.changelog") version "2.0.0"
     // Gradle Qodana Plugin
     id("org.jetbrains.qodana") version "0.1.13"
     // Gradle Kover Plugin
     id("org.jetbrains.kotlinx.kover") version "0.6.1"
+    // javafx
+    id("org.openjfx.javafxplugin") version "0.0.10"
 }
 
 group = properties("pluginGroup")
@@ -23,7 +25,27 @@ version = properties("pluginVersion")
 
 // Configure project's dependencies
 repositories {
+//    maven {
+//        url = "https://maven.aliyun.com/repository/public/"
+//    }
     mavenCentral()
+}
+
+dependencies {
+    implementation("com.squareup:javapoet:1.13.0")
+    // bootstrapfx
+    implementation("org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0")
+    //
+//    implementation("org.openjfx:javafx-controls:11.0.2")
+//    implementation("org.openjfx:javafx-base:11.0.2")
+//    implementation("org.openjfx:javafx-swing:11.0.2")
+//    implementation("org.openjfx:javafx-fxml:11.0.2")
+//    implementation("org.openjfx:javafx-web:11.0.2")
+}
+
+javafx {
+    version = ("11.0.2")
+    modules = mutableListOf<String>().plusElement("javafx.controls").plusElement("javafx.fxml")
 }
 
 // Set the JVM language level used to build the project. Use Java 11 for 2020.3+, and Java 17 for 2022.2+.

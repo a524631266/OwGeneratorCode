@@ -1,18 +1,43 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.a524631266.owgeneratorcode</id>
-    <name>IntelliJ Platform Plugin OwGeneratorCode</name>
+    <name>OwGeneratorCode</name>
     <vendor>a524631266</vendor>
-
+    <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
+            on how to target different products -->
     <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.java</depends>
+<!--    <depends>com.intellij.modules.java</depends>-->
+
+
+    <description><![CDATA[
+      用于自动生成领域模型中Java代码<br>
+      包括 controller service mapper 中的 <em> 增删改查 </em>
+    ]]></description>
+
+
+    <idea-version since-build="173.0"/>
+    <change-notes><![CDATA[
+      新增 右键脚本<br>
+      <em>无标化</em>
+    ]]>
+    </change-notes>
 
     <extensions defaultExtensionNs="com.intellij">
         <applicationService serviceImplementation="com.github.a524631266.owgeneratorcode.services.MyApplicationService"/>
         <projectService serviceImplementation="com.github.a524631266.owgeneratorcode.services.MyProjectService"/>
     </extensions>
 
-    <applicationListeners>
-        <listener class="com.github.a524631266.owgeneratorcode.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
-    </applicationListeners>
+
+    <actions>
+        <action id="CodeGeneratorId" class="com.github.a524631266.owgeneratorcode.OwCodeGenerator"
+                text="OwCodeGenerator" description="用于生成ow内部的自动代码，crud">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
+        <action id="projectViewPopupMenuDemo" class="com.github.a524631266.owgeneratorcode.ProjectViewPopupMenuDemo"
+                text="ProjectViewPopupMenuDemo" description="ProjectViewPopupMenuDemo">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+        </action>
+    </actions>
 </idea-plugin>
