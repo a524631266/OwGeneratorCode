@@ -29,6 +29,10 @@
         <projectService serviceImplementation="com.github.a524631266.owgeneratorcode.services.MyProjectService"/>
     </extensions>
 
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow id="My Own Tool" secondary="true" icon="AllIcons.General.Modified" anchor="right"
+                    factoryClass="com.github.a524631266.owgeneratorcode.window.ToolWindowShowView"/>
+    </extensions>
 
     <actions>
         <action id="CodeGeneratorId" class="com.github.a524631266.owgeneratorcode.OwCodeGenerator"

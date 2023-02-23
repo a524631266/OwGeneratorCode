@@ -28,6 +28,7 @@ repositories {
 //    maven {
 //        url = "https://maven.aliyun.com/repository/public/"
 //    }
+    maven("https://maven.aliyun.com/repository/public/")
     mavenCentral()
 }
 
@@ -35,6 +36,7 @@ dependencies {
     implementation("com.squareup:javapoet:1.13.0")
     // bootstrapfx
     implementation("org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0")
+    implementation("com.alibaba:fastjson:1.2.70")
     //
 //    implementation("org.openjfx:javafx-controls:11.0.2")
 //    implementation("org.openjfx:javafx-base:11.0.2")
