@@ -29,6 +29,7 @@ repositories {
 //        url = "https://maven.aliyun.com/repository/public/"
 //    }
     maven("https://maven.aliyun.com/repository/public/")
+    maven("https://maven.aliyun.com/nexus/content/groups/public/")
     mavenCentral()
 }
 
@@ -37,17 +38,22 @@ dependencies {
     // bootstrapfx
     implementation("org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0")
     implementation("com.alibaba:fastjson:1.2.70")
+    implementation("cn.hutool:hutool-core:5.6.5")
     //
 //    implementation("org.openjfx:javafx-controls:11.0.2")
 //    implementation("org.openjfx:javafx-base:11.0.2")
 //    implementation("org.openjfx:javafx-swing:11.0.2")
+//    implementation("org.openjfx:javafx-swing:win:11.0.2")
 //    implementation("org.openjfx:javafx-fxml:11.0.2")
 //    implementation("org.openjfx:javafx-web:11.0.2")
 }
 
 javafx {
     version = ("11.0.2")
-    modules = mutableListOf<String>().plusElement("javafx.controls").plusElement("javafx.fxml")
+    modules = mutableListOf<String>()
+        .plusElement("javafx.controls")
+        .plusElement("javafx.fxml")
+        .plusElement("javafx.swing")
 }
 
 // Set the JVM language level used to build the project. Use Java 11 for 2020.3+, and Java 17 for 2022.2+.
@@ -121,12 +127,12 @@ tasks {
 
     // Configure UI tests plugin
     // Read more: https://github.com/JetBrains/intellij-ui-test-robot
-    runIdeForUiTests {
-        systemProperty("robot-server.port", "8082")
-        systemProperty("ide.mac.message.dialogs.as.sheets", "false")
-        systemProperty("jb.privacy.policy.text", "<!--999.999-->")
-        systemProperty("jb.consents.confirmation.enabled", "false")
-    }
+//    runIdeForUiTests {
+//        systemProperty("robot-server.port", "8082")
+//        systemProperty("ide.mac.message.dialogs.as.sheets", "false")
+//        systemProperty("jb.privacy.policy.text", "<!--999.999-->")
+//        systemProperty("jb.consents.confirmation.enabled", "false")
+//    }
 
     signPlugin {
         certificateChain.set(System.getenv("CERTIFICATE_CHAIN"))
@@ -141,5 +147,16 @@ tasks {
         // Specify pre-release label to publish the plugin in a custom Release Channel automatically. Read more:
         // https://plugins.jetbrains.com/docs/intellij/deployment.html#specifying-a-release-channel
         channels.set(listOf(properties("pluginVersion").split('-').getOrElse(1) { "default" }.split('.').first()))
+    }
+//
+//    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+//        kotlinOptions {
+////            encoding = "UTF-8"
+//            jvmTarget = "1.8"
+//        }
+//    }
+
+    withType<org.gradle.api.tasks.compile.JavaCompile> {
+        options.encoding = "utf-8"
     }
 }

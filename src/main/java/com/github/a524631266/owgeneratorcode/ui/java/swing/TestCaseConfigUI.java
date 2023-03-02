@@ -1,4 +1,4 @@
-package com.github.a524631266.owgeneratorcode.ui.java.fx;
+package com.github.a524631266.owgeneratorcode.ui.java.swing;
 
 import com.intellij.openapi.project.Project;
 

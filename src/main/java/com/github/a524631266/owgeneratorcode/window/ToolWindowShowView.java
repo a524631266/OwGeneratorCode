@@ -24,9 +24,10 @@ public class ToolWindowShowView implements ToolWindowFactory {
         Icon icon = toolWindow.getIcon();
         String id = toolWindow.getId();
         System.out.println("id:" + id);
-        ToolWindowUtil toolWindowUtil = new ToolWindowUtil(project, toolWindow);
+        ToolWindowUtil2 toolWindowUtil = new ToolWindowUtil2(project, toolWindow);
         ContentFactory contentFactory = ContentFactory.SERVICE.getInstance();
         Content content = contentFactory.createContent(toolWindowUtil.getPanel(), "", false);
         toolWindow.getContentManager().addContent(content);
+
     }
 }

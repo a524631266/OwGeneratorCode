@@ -1,4 +1,4 @@
-package com.github.a524631266.owgeneratorcode.ui.java.fx;
+package com.github.a524631266.owgeneratorcode.ui.java.swing;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;

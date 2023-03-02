@@ -19,19 +19,23 @@
 
     <idea-version since-build="173.0"/>
     <change-notes><![CDATA[
-      新增 右键脚本<br>
-      <em>无标化</em>
+        1、添加一个json 美化 和 时间戳格式转化工具。
+        2、新增javafx融合工具
+        3、添加 jvm utf-8格式解析。防止gbk编码不正确的报错提醒。
     ]]>
     </change-notes>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.a524631266.owgeneratorcode.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.a524631266.owgeneratorcode.services.MyProjectService"/>
+<!--        <applicationService serviceImplementation="com.github.a524631266.owgeneratorcode.services.MyApplicationService"/>-->
+<!--        <projectService serviceImplementation="com.github.a524631266.owgeneratorcode.services.MyProjectService"/>-->
     </extensions>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow id="My Own Tool" secondary="true" icon="AllIcons.General.Modified" anchor="right"
+        <toolWindow id="工具集" secondary="true" icon="AllIcons.General.Modified" anchor="right"
                     factoryClass="com.github.a524631266.owgeneratorcode.window.ToolWindowShowView"/>
+
+        <toolWindow id="Fx面板测试" secondary="true" icon="AllIcons.General.Modified" anchor="right"
+                    factoryClass="com.github.a524631266.owgeneratorcode.window.ToolWindowJavaFxView"/>
     </extensions>
 
     <actions>
