@@ -30,6 +30,7 @@ repositories {
 //    }
     maven("https://maven.aliyun.com/repository/public/")
     maven("https://maven.aliyun.com/nexus/content/groups/public/")
+    maven("https://repo1.maven.org/maven2/")
     mavenCentral()
 }
 
@@ -39,6 +40,12 @@ dependencies {
     implementation("org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0")
     implementation("com.alibaba:fastjson:1.2.70")
     implementation("cn.hutool:hutool-core:5.6.5")
+    // https://mvnrepository.com/artifact/ws.schild/jave-all-deps
+    implementation("ws.schild:jave-all-deps:3.1.1")
+//    implementation("org.apache.logging.log4j:log4j-to-slf4j:2.17.0")
+//    implementation("org.apache.logging.log4j:log4j-api:2.17.0")
+
+    implementation("org.slf4j:slf4j-log4j12:1.7.5")
     //
 //    implementation("org.openjfx:javafx-controls:11.0.2")
 //    implementation("org.openjfx:javafx-base:11.0.2")
