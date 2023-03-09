@@ -14,6 +14,7 @@ import ws.schild.jave.info.VideoSize;
 import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.math.BigDecimal;
 import java.util.Arrays;
 
 /**
@@ -41,14 +42,11 @@ public class VideoToGIf {
 
     /**
      * 转化音频格式
-     *
-     * @param sourceFilePath : 源视频文件路径
-     * @param targetFilePath : 目标gif文件路径
      * @return
      */
-    public static void transform(String sourceFilePath, String targetFilePath) {
-        File source = new File(sourceFilePath);
-        File target = new File(targetFilePath);
+    public static void transform(VideoParam videoParam) {
+        File source = new File(videoParam.getSourceFolderPath());
+        File target = new File(videoParam.getTargetFolderPath());
         try {
             //获得原视频的分辨率
 //            Constructor<MultimediaObject> constructor = MultimediaObject.class.getConstructor(File.class);
@@ -62,9 +60,10 @@ public class VideoToGIf {
             VideoAttributes video = new VideoAttributes();
             video.setCodec(outputFormat);
             //设置视频帧率 正常为10 ，值越大越流畅
-            video.setFrameRate(10);
+            video.setFrameRate(videoParam.getFrameRate());
             //设置视频分辨率
-            VideoSize targetSize = new VideoSize(sourceSize.getWidth() / 5, sourceSize.getHeight() / 5);
+            VideoSize targetSize = new VideoSize(new BigDecimal(sourceSize.getWidth() * videoParam.getScale()).intValue() ,
+                    new BigDecimal(sourceSize.getHeight() * videoParam.getScale()).intValue());
             video.setSize(targetSize);
             //设置转码属性
             EncodingAttributes attrs = new EncodingAttributes();
@@ -91,8 +90,47 @@ public class VideoToGIf {
         File sourceFolder = new File(sourceFolderPath);
         if (sourceFolder.list().length != 0) {
             Arrays.asList(sourceFolder.list()).forEach(e -> {
-                transform(sourceFolderPath + File.separator + e, targetFolderPath + File.separator + getNewFileName(e));
+                transform(new VideoParam(sourceFolderPath + File.separator + e,
+                        targetFolderPath + File.separator + getNewFileName(e),
+                        0.2,
+                        10));
             });
+        }
+    }
+
+    public static class VideoParam {
+        /**
+         *  源视频文件路径
+         */
+        String sourceFolderPath;
+        /**
+         * 目标gif文件路径
+         */
+        String targetFolderPath;
+        Double scale;
+        Integer frameRate;
+
+        public VideoParam(String sourceFolderPath, String targetFolderPath, Double scale, Integer frameRate) {
+            this.sourceFolderPath = sourceFolderPath;
+            this.targetFolderPath = targetFolderPath;
+            this.scale = scale;
+            this.frameRate = frameRate;
+        }
+
+        public String getSourceFolderPath() {
+            return sourceFolderPath;
+        }
+
+        public String getTargetFolderPath() {
+            return targetFolderPath;
+        }
+
+        public Double getScale() {
+            return scale;
+        }
+
+        public Integer getFrameRate() {
+            return frameRate;
         }
     }
 

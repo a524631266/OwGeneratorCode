@@ -6,16 +6,14 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.github.a524631266.owgeneratorcode.utils.VideoToGIf;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.ToolWindow;
-import javafx.application.Platform;
-import javafx.scene.Scene;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  * @author : Liangliang.Zhang4
@@ -39,6 +37,10 @@ public class ToolWindowUtil2 {
     private JPanel picPanel;
     private JLabel picture;
     private JButton transferGif;
+    private JSlider frameRateSlider;
+    private JSlider scaleSlider;
+    private JTextField scaleText;
+    private JTextField frameRateText;
 
     public ToolWindowUtil2(Project project, ToolWindow toolWindow) {
 
@@ -101,13 +103,33 @@ public class ToolWindowUtil2 {
             String opFilePath = outputFilePath.getText();
             String gifFileName = VideoToGIf.getNewFileName(vedioFilePath);
             String gifPath = opFilePath + File.separator + gifFileName;
-            VideoToGIf.transform(vedioFilePath, gifPath);
+            Double scale = BigDecimal.valueOf(scaleSlider.getValue() / 50.0).setScale(1, RoundingMode.HALF_UP).doubleValue();
+            Integer frameRate = frameRateSlider.getValue();
+            VideoToGIf.transform(new VideoToGIf.VideoParam(vedioFilePath, gifPath, scale, frameRate));
             ImageIcon img = new ImageIcon(gifPath);
             img.setImage(img.getImage().getScaledInstance(picture.getWidth(),picture.getHeight(), Image.SCALE_DEFAULT));
             picture.setIcon(img);
             transferGif.setEnabled(true);
         });
 
+        updateFrameRateText();
+        updateScaleText();
+        frameRateSlider.addChangeListener(e -> {
+            updateFrameRateText();
+        });
+        scaleSlider.addChangeListener(e -> {
+            updateScaleText();
+        });
+    }
+
+    private void updateScaleText() {
+        int scale = scaleSlider.getValue();
+        scaleText.setText(BigDecimal.valueOf(scale / 50.0).setScale(1, RoundingMode.HALF_UP).toPlainString());
+    }
+
+    private void updateFrameRateText() {
+        int frameRate = frameRateSlider.getValue();
+        frameRateText.setText(frameRate + "");
     }
 
     public JPanel getPanel() {
