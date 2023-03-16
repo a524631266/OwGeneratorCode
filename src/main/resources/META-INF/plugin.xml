@@ -36,6 +36,7 @@
 
         <toolWindow id="Fx面板测试" secondary="true" icon="AllIcons.General.Modified" anchor="right"
                     factoryClass="com.github.a524631266.owgeneratorcode.window.ToolWindowJavaFxView"/>
+        <toolWindow factoryClass="com.github.a524631266.owgeneratorcode.note.window.MdNoteWindowFactory" id="MdNote" anchor="right"></toolWindow>
     </extensions>
 
     <actions>
@@ -47,5 +48,11 @@
                 text="ProjectViewPopupMenuDemo" description="ProjectViewPopupMenuDemo">
             <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
         </action>
+        <action id="mp-add-note-note" class="com.github.a524631266.owgeneratorcode.note.action.AddMdNoteAction"
+                text="add md note" description="add md note">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl meta M"/>
+        </action>
     </actions>
+
 </idea-plugin>

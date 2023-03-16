@@ -46,6 +46,8 @@ dependencies {
 //    implementation("org.apache.logging.log4j:log4j-api:2.17.0")
 
     implementation("org.slf4j:slf4j-log4j12:1.7.5")
+
+    implementation("org.freemarker:freemarker:2.3.31")
     //
 //    implementation("org.openjfx:javafx-controls:11.0.2")
 //    implementation("org.openjfx:javafx-base:11.0.2")

@@ -15,7 +15,26 @@
           </set>
         </option>
       </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/../idea-demo" />
+        <option name="gradleJvm" value="corretto-11" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/../idea-demo" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/../idea-demo/md-note" />
+        <option name="gradleJvm" value="corretto-11" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/../idea-demo/md-note" />
+          </set>
+        </option>
+      </GradleProjectSettings>
     </option>
-    <option name="offlineMode" value="true" />
   </component>
 </project>
